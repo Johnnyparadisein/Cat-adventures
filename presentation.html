@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Cat's Journey in Space</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1a1a2e;
+            color: #e0e0e0;
+            overflow: hidden;
+        }
+
+        .presentation-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: opacity 0.5s ease-in-out;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        .slide.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .slide:not(.active) {
+            opacity: 0;
+        }
+        
+        .slide-content {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .slide img {
+            max-width: 50%;
+            max-height: 70vh;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+            margin: 20px;
+        }
+        
+        .slide .text-content {
+            max-width: 50%;
+            padding: 0 40px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            color: #ff69b4;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px #ff69b4;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: #87ceeb;
+            margin-bottom: 1.5rem;
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+        
+        .title-slide h1 {
+            font-size: 5rem;
+        }
+
+        .title-slide p {
+            font-size: 2rem;
+            color: #87ceeb;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            width: 100%;
+            text-align: center;
+            z-index: 1000;
+        }
+
+        .nav-button {
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            margin: 0 15px;
+            font-size: 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .nav-button:hover {
+            background-color: #ff85c1;
+            transform: translateY(-2px);
+        }
+
+        .nav-button:active {
+            transform: translateY(1px);
+        }
+
+        .slide-number {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 1.2rem;
+            color: #e0e0e0;
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="presentation-container">
+        <!-- Slide 1: Title -->
+        <div class="slide active title-slide" data-slide="1">
+             <div class="slide-content">
+                <div class="text-content">
+                    <h1>A Cat's Journey in Space</h1>
+                    <p>An Animated Short</p>
+                </div>
+                <img src="4.png" alt="A cat in a spaceship">
+            </div>
+        </div>
+
+        <!-- Slide 2: The Cockpit -->
+        <div class="slide" data-slide="2">
+            <div class="slide-content">
+                <img src="4.png" alt="Cat in a spaceship cockpit">
+                <div class="text-content">
+                    <h2>Scene 1: The Cockpit</h2>
+                    <p>"A ginger tabby cat wearing a small astronaut helmet floats inside a spaceship cockpit, looking out at a vibrant nebula filled with swirling purple and pink clouds."</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Chasing Butterflies -->
+        <div class="slide" data-slide="3">
+            <div class="slide-content">
+                 <img src="2.png" alt="Glowing space butterfly and crystals">
+                 <div class="text-content">
+                    <h2>Scene 3: Chasing Butterflies</h2>
+                    <p>"The cat is seen playfully chasing a small, glowing space butterfly with iridescent wings near a field of colorful, floating space crystals."</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Homeward Bound -->
+        <div class="slide" data-slide="4">
+             <div class="slide-content">
+                <img src="1.png" alt="Earth from space">
+                <div class="text-content">
+                    <h2>Scene 5: Homeward Bound</h2>
+                    <p>"The cat is back inside the spaceship, now looking at Earth through a large window, a contented expression on its face."</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Behind the Scenes -->
+        <div class="slide" data-slide="5">
+            <div class="slide-content">
+                <img src="3.jpg" alt="3D rendered cat in a spaceship">
+                <div class="text-content">
+                    <h2>Behind the Scenes</h2>
+                    <p>A glimpse into the 3D rendered art style, contrasting with the 2D animation style used in the short film.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-button" id="prevBtn">Previous</button>
+        <button class="nav-button" id="nextBtn">Next</button>
+    </div>
+
+    <div class="slide-number" id="slideNumber">1 / 5</div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.slide');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const slideNumberDisplay = document.getElementById('slideNumber');
+            let currentSlide = 0;
+
+            function showSlide(index) {
+                slides.forEach((slide, i) => {
+                    slide.classList.remove('active');
+                    if (i === index) {
+                        slide.classList.add('active');
+                    }
+                });
+                slideNumberDisplay.textContent = `${index + 1} / ${slides.length}`;
+                
+                prevBtn.disabled = index === 0;
+                nextBtn.disabled = index === slides.length - 1;
+            }
+
+            prevBtn.addEventListener('click', () => {
+                if (currentSlide > 0) {
+                    currentSlide--;
+                    showSlide(currentSlide);
+                }
+            });
+
+            nextBtn.addEventListener('click', () => {
+                if (currentSlide < slides.length - 1) {
+                    currentSlide++;
+                    showSlide(currentSlide);
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight') {
+                    nextBtn.click();
+                } else if (e.key === 'ArrowLeft') {
+                    prevBtn.click();
+                }
+            });
+
+            showSlide(currentSlide);
+        });
+    </script>
+
+</body>
+</html> 
